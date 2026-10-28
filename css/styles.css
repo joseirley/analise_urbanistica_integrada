@@ -1,0 +1,521 @@
+/* ==========================================================================
+   Painel de Análise Urbanística Integrada - CSS Moderno e Institucional
+   DALU / Suplan - Prefeitura de Belo Horizonte
+   ========================================================================== */
+
+:root {
+  --primary: #0f2d59;          /* Azul Institucional PBH */
+  --primary-light: #2563eb;
+  --primary-dark: #091e3d;
+  --secondary: #0d9488;        /* Teal para planejamento urbano */
+  --accent: #f59e0b;           /* Âmbar */
+  --impact-color: #dc2626;     /* Vermelho vivo para Impacto */
+  --medium-color: #2563eb;     /* Azul para Edificações Médias */
+  --kernel-gradient: linear-gradient(90deg, #3b82f6, #06b6d4, #10b981, #f59e0b, #ef4444);
+  --bg-main: #f1f5f9;
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-main);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header Institucional com Logo PBH */
+header.app-header {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  color: #ffffff;
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-logo-wrapper {
+  background: #ffffff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-logo {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+
+.header-title-box h1 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-subtitle {
+  font-size: 0.76rem;
+  color: #cbd5e1;
+  margin-top: 2px;
+}
+
+.header-meta {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  margin-top: 1px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-reset {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  color: var(--primary);
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-reset:hover {
+  background: var(--border-color);
+  color: var(--primary);
+}
+
+/* KPI Banner */
+.kpi-banner {
+  background: white;
+  border-bottom: 1px solid var(--border-color);
+  padding: 6px 16px;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+
+.kpi-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-main);
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  min-width: 175px;
+  flex-shrink: 0;
+}
+
+.kpi-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.kpi-icon.med { background: #dbeafe; color: var(--medium-color); }
+.kpi-icon.imp { background: #fee2e2; color: var(--impact-color); }
+.kpi-icon.res { background: #ccfbf1; color: var(--secondary); }
+.kpi-icon.pop { background: #f3e8ff; color: #7c3aed; }
+.kpi-icon.vag { background: #fef3c7; color: #d97706; }
+.kpi-icon.are { background: #e0e7ff; color: #4338ca; }
+
+.kpi-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.kpi-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+/* Main Layout */
+.app-layout {
+  display: grid;
+  grid-template-columns: 310px 1fr 400px;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Sidebar: Camadas e Filtros */
+.sidebar {
+  background: white;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 500;
+}
+
+.sidebar-section {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--primary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.section-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* Layer Control Card */
+.layer-card {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+}
+
+.layer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.layer-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.layer-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.layer-indicator.reg {
+  background-color: rgba(59, 130, 246, 0.25);
+  border: 2px dashed #0f2d59;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+.layer-indicator.med { background-color: var(--medium-color); }
+.layer-indicator.imp { background-color: var(--impact-color); }
+.layer-indicator.heat { background: var(--kernel-gradient); border-radius: 3px; }
+
+.opacity-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.opacity-slider {
+  flex: 1;
+  height: 4px;
+  accent-color: var(--primary-light);
+  cursor: pointer;
+}
+
+/* Form Controls */
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 3px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 0.8rem;
+  background-color: white;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.range-inputs input {
+  width: 100%;
+}
+
+.range-separator {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+/* Map Container */
+.map-container-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  background-color: #e2e8f0;
+}
+
+/* Map Legend */
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  font-size: 0.76rem;
+  max-width: 250px;
+}
+
+.map-legend h4 {
+  font-size: 0.78rem;
+  margin-bottom: 6px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+/* Analytics Panel (Right) */
+.analytics-panel {
+  background: white;
+  border-left: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 500;
+}
+
+.chart-card {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.chart-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-canvas-box {
+  position: relative;
+  width: 100%;
+  height: 180px;
+}
+
+/* Details Section */
+.selection-details {
+  padding: 14px 16px;
+  background: var(--bg-main);
+  flex: 1;
+}
+
+.selection-details h3 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.details-content {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  background: white;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-impact {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.badge-medium {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+/* Popups Leaflet */
+.custom-popup .leaflet-popup-content-wrapper {
+  border-radius: 6px;
+  box-shadow: var(--shadow-lg);
+  padding: 4px;
+}
+
+.custom-popup .popup-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+}
+
+.popup-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.76rem;
+}
+
+.popup-table td {
+  padding: 2px 0;
+}
+
+.popup-table td.label {
+  font-weight: 600;
+  color: var(--text-muted);
+  width: 45%;
+}
+
+.popup-table td.val {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* Rodapé de Informação Institucional */
+footer.app-footer {
+  background: #0f172a;
+  color: #94a3b8;
+  font-size: 0.68rem;
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #1e293b;
+  flex-shrink: 0;
+}
+
+footer.app-footer a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+  .app-layout {
+    grid-template-columns: 280px 1fr 340px;
+  }
+}
+
+@media (max-width: 960px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 380px auto;
+  }
+  .sidebar, .analytics-panel {
+    border: none;
+    max-height: 380px;
+  }
+}
