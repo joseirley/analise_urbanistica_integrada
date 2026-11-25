@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 2.0.3 — novembro/2026
+- Arquivos CSS e JS carregados com número de versão (`?v=2.0.3`), para evitar que o navegador misture a página nova com arquivos antigos em cache (página "desconfigurada" no GitHub Pages após a atualização).
+
 ## 2.0 — novembro/2026
 
 Nova versão do painel, agora comparando **edificações comuns** com **empreendimentos de impacto**. A versão 1.0 foi preservada em [`versao_anterior/`](versao_anterior/).
