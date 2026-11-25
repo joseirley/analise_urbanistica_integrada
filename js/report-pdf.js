@@ -393,7 +393,7 @@
     // ---- 6. Notas ----
     D.titulo('6. Notas metodológicas');
     [
-      `Bases: empreendimento_impacto_estudo_2.geojson (${dados.impacto.length} empreendimentos), edificacoes_2.geojson (${dados.comuns.length} edificações) e regional.geojson (${dados.regional.features.length} regionais), todas em SIRGAS 2000 / UTM 23S (EPSG:31983). Dados de referência: ${ref}.`,
+      `Bases: empreendimentos de impacto (${Util.fmt(dados.impacto.length)} empreendimentos), edificações comuns (${Util.fmt(dados.comuns.length)} edificações) e regionais administrativas (${Util.fmt(dados.regional.features.length)} regionais), todas em SIRGAS 2000 / UTM 23S (EPSG:31983). Dados de referência: ${ref}.`,
       'Combinação de filtros: E entre dimensões diferentes e OU entre categorias da mesma dimensão. Com um limite numérico informado, registros sem o valor ficam de fora.',
       'Edificações médias: edificações comuns com vagas entre 100 e 400 OU unidades residenciais entre 96 e 300 OU área construída entre 6.000 e 20.000 m² (limites inclusivos).',
       'Enquadramento: os textos originais foram uniformizados em categorias únicas, sem alteração dos arquivos de origem.',

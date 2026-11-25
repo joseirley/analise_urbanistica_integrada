@@ -48,7 +48,7 @@ Os mapas de fundo (OpenStreetMap e Esri) exigem internet; filtros, gráficos e r
 
 O site é publicado pelo GitHub Pages a partir da **raiz do branch `main`**. Qualquer alteração enviada ao `main` é publicada automaticamente em alguns minutos. O arquivo `.nojekyll` faz o Pages servir os arquivos como estão.
 
-**Cache do navegador:** no `index.html`, os arquivos CSS e JS são carregados com um número de versão (`?v=2.0.4`). A cada nova publicação, aumente esse número (buscar e substituir no `index.html`), para que os navegadores não misturem a página nova com estilos ou scripts antigos guardados em cache.
+**Cache do navegador:** no `index.html`, os arquivos CSS e JS são carregados com um número de versão (`?v=2.0.5`). A cada nova publicação, aumente esse número (buscar e substituir no `index.html`), para que os navegadores não misturem a página nova com estilos ou scripts antigos guardados em cache.
 
 ---
 

@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 2.0.5 — novembro/2026
+- Relatório PDF: as notas metodológicas deixam de citar o nome e o formato dos arquivos das bases.
+
 ## 2.0.4 — novembro/2026
 - Página de introdução: a especificação das bases de dados deixa de exibir o nome e o formato dos arquivos.
 
