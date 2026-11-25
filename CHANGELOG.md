@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 2.0.4 — novembro/2026
+- Página de introdução: a especificação das bases de dados deixa de exibir o nome e o formato dos arquivos.
+
 ## 2.0.3 — novembro/2026
 - Arquivos CSS e JS carregados com número de versão (`?v=2.0.3`), para evitar que o navegador misture a página nova com arquivos antigos em cache (página "desconfigurada" no GitHub Pages após a atualização).
 
