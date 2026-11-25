@@ -397,6 +397,7 @@
       'Combinação de filtros: E entre dimensões diferentes e OU entre categorias da mesma dimensão. Com um limite numérico informado, registros sem o valor ficam de fora.',
       'Edificações médias: edificações comuns com vagas entre 100 e 400 OU unidades residenciais entre 96 e 300 OU área construída entre 6.000 e 20.000 m² (limites inclusivos).',
       'Enquadramento: os textos originais foram uniformizados em categorias únicas, sem alteração dos arquivos de origem.',
+      'População estimada: número de unidades residenciais × população média por domicílio do setor censitário do IBGE (Censo Demográfico 2022) em que a edificação está; é uma aproximação, não uma contagem de moradores.',
       'Valores não informados são somados como zero e excluídos do cálculo das médias por registro.',
       'Empreendimento selecionado: comparado com as edificações comuns do mesmo bairro (bairro inteiro, mesmo quando abrange mais de uma regional).'
     ].forEach(t => D.texto('•  ' + t, { x: D.M + 6, max: D.larg() - 6, tam: 8.6 }));

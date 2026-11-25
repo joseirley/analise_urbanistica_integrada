@@ -96,7 +96,7 @@
           <div class="ic"><h4>Sistema de referência</h4><p>O SRC é lido de cada arquivo. As coordenadas são convertidas para WGS 84 apenas para desenhar o mapa; distâncias e densidade são calculadas em metros (UTM). Todos os pontos caem dentro da regional informada no atributo.</p></div>
           <div class="ic"><h4>Uso</h4><p>Grafias diferentes (RESIDENCIAL, Residencial…) foram unificadas em três categorias: <b>Residencial</b>, <b>Não residencial</b> e <b>Misto</b>.</p></div>
           <div class="ic"><h4>Enquadramento</h4><p>O campo original combina critérios separados por "/" e tem redações variadas. Cada critério foi associado a uma categoria única, e cada empreendimento pode ter mais de uma.</p><ul class="intro-enq" id="introEnq"></ul></div>
-          <div class="ic"><h4>População estimada</h4><p>Nas edificações comuns, é o número de unidades residenciais multiplicado pela média de moradores por domicílio ocupado do bairro (Censo 2022), arredondado. Nos empreendimentos de impacto, vem da base de estudo, onde estava em texto e foi convertida para número.</p></div>
+          <div class="ic"><h4>População estimada</h4><p>É calculada a partir da <b>população média por domicílio do setor censitário do IBGE</b> (Censo Demográfico 2022) em que a edificação está: número de unidades residenciais × população média por domicílio do setor, arredondado. Nos empreendimentos de impacto, o valor vem informado na base de estudo, onde estava em texto e foi convertido para número.</p></div>
           <div class="ic"><h4>Valores não informados</h4><p>Aparecem como "Não informado" (por exemplo, unidades residenciais de empreendimentos não residenciais). Nas somas contam como zero; nas médias por registro, entram só os registros com valor.</p></div>
           <div class="ic"><h4>Bairros e coordenadas</h4><p>Alguns bairros se estendem por duas regionais; na comparação por bairro, considera-se o bairro inteiro. Edificações com as mesmas coordenadas aparecem como um único ponto, com navegação entre os registros.</p></div>
         </div>
@@ -140,7 +140,7 @@
         <h2><span>7</span>Cuidados na interpretação</h2>
         <ul class="intro-lista">
           <li>Os dados refletem a situação de <b class="js-ref">novembro/2026</b>; aprovações posteriores não estão incluídas.</li>
-          <li>A população estimada é uma aproximação a partir de médias do Censo 2022, não uma contagem de moradores.</li>
+          <li>A população estimada é uma aproximação, a partir da população média por domicílio do setor censitário (IBGE, Censo 2022); não é uma contagem de moradores.</li>
           <li>Edificação média é um critério analítico deste estudo, que sinaliza proximidade aos limiares de impacto; não equivale a enquadramento legal.</li>
           <li>Os enquadramentos foram agrupados em categorias-resumo; o texto legal completo está na base original.</li>
           <li>Consistência: a cada interação, o painel reconta os registros e confere indicadores, mapa, gráficos e comparativos. Os resultados também foram validados por um cálculo independente.</li>

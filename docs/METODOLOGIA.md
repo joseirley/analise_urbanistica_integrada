@@ -23,7 +23,7 @@ O SRC é lido do próprio GeoJSON (`crs.properties.name`). As geometrias são re
 | Unidades residenciais | `num_und_residenciais` | `und_residenciais` | Ausente ou nulo em 15 empreendimentos não residenciais |
 | Vagas | `total_vagas` | `vagas_carros` | |
 | Área construída (m²) | `area_construida` | `ares_construida` | Grafia original do campo |
-| População estimada | `pop_estimada` | `pop_estimada` | Texto nos empreendimentos; convertido para número |
+| População estimada | `pop_estimada` | `pop_estimada` | Unidades × população média por domicílio do setor censitário (IBGE 2022); texto nos empreendimentos, convertido para número |
 | Uso | `uso_projeto` | `uso` | Uniformizado (ver 3.1) |
 | Enquadramento | — | `enquadramento` | Uniformizado (ver 3.2) |
 | Situação do alvará | `situacao_alvara` | — | Resumida no quadro do ponto |
@@ -48,10 +48,13 @@ O campo combina critérios separados por "/" e tem grafias variadas. Cada crité
 | Casa de shows e espetáculos |
 | Gestão de instalações de esportes |
 
-### 3.3 Valores não informados
+### 3.3 População estimada
+A população estimada é calculada a partir da **população média por domicílio do setor censitário do IBGE (Censo Demográfico 2022)** em que a edificação está: número de unidades residenciais × população média por domicílio particular ocupado do setor (campo `pop_media_domicilio_particular_ocupado`), arredondado. Nas edificações comuns, o valor confere com esse cálculo em 3.344 dos 3.345 registros. Nos empreendimentos de impacto, o valor vem informado na base de estudo, em texto, e é convertido para número. É uma aproximação, não uma contagem de moradores.
+
+### 3.4 Valores não informados
 São exibidos como "Não informado". Nas somas contam como zero; nas médias por registro, entram só os registros com valor informado. Com um filtro numérico (mín./máx.) ativo, registros sem o valor ficam de fora.
 
-### 3.4 Bairros em mais de uma regional
+### 3.5 Bairros em mais de uma regional
 Dez bairros aparecem em duas regionais (ex.: Lourdes e Barro Preto — Centro-Sul/Hipercentro; Santa Efigênia e Floresta — Centro-Sul/Leste). Na comparação de um empreendimento com o seu bairro, considera-se o **bairro inteiro**.
 
 ## 4. Regras de negócio
