@@ -1,0 +1,641 @@
+{
+ "cenarios": {
+  "S01_sem_filtro": {
+   "estado": {},
+   "esperado": {
+    "comum": {
+     "n": 3345,
+     "und": 41191.0,
+     "vagas": 63326.0,
+     "area": 4822043.87,
+     "pop": 101920.0
+    },
+    "impacto": {
+     "n": 29,
+     "und": 4220.0,
+     "vagas": 15084.0,
+     "area": 1214411.18,
+     "pop": 10547.0
+    },
+    "medias": 177,
+    "hash_uids": "bc9e9ff17bd01c129fd096787dc996e3"
+   }
+  },
+  "S02_regional_centro_sul": {
+   "estado": {
+    "regional": [
+     "CENTRO-SUL"
+    ]
+   },
+   "esperado": {
+    "comum": {
+     "n": 572,
+     "und": 10191.0,
+     "vagas": 19303.0,
+     "area": 1527684.37,
+     "pop": 22869.0
+    },
+    "impacto": {
+     "n": 10,
+     "und": 640.0,
+     "vagas": 3569.0,
+     "area": 461146.98,
+     "pop": 1343.0
+    },
+    "medias": 72,
+    "hash_uids": "f91bffd009fdd3d7da90b10f142d4cc7"
+   }
+  },
+  "S03_centro_sul_e_residencial": {
+   "estado": {
+    "regional": [
+     "CENTRO-SUL"
+    ],
+    "uso": [
+     "Residencial"
+    ]
+   },
+   "esperado": {
+    "comum": {
+     "n": 412,
+     "und": 5156.0,
+     "vagas": 10581.0,
+     "area": 788181.61,
+     "pop": 11774.0
+    },
+    "impacto": {
+     "n": 0,
+     "und": 0,
+     "vagas": 0,
+     "area": 0,
+     "pop": 0
+    },
+    "medias": 30,
+    "hash_uids": "b5ebff5a5f364b440a9162bf46113e16"
+   }
+  },
+  "S04_pampulha_ou_oeste": {
+   "estado": {
+    "regional": [
+     "PAMPULHA",
+     "OESTE"
+    ]
+   },
+   "esperado": {
+    "comum": {
+     "n": 1125,
+     "und": 13288.0,
+     "vagas": 20995.0,
+     "area": 1550775.3,
+     "pop": 33584.0
+    },
+    "impacto": {
+     "n": 12,
+     "und": 1760.0,
+     "vagas": 7548.0,
+     "area": 463791.05,
+     "pop": 4465.0
+    },
+    "medias": 49,
+    "hash_uids": "1e696b7578e1f7563394d2c4e9a2a4b7"
+   }
+  },
+  "S05_bairro_savassi": {
+   "estado": {
+    "bairro": [
+     "Savassi"
+    ]
+   },
+   "esperado": {
+    "comum": {
+     "n": 20,
+     "und": 733.0,
+     "vagas": 1265.0,
+     "area": 118223.78,
+     "pop": 1466.0
+    },
+    "impacto": {
+     "n": 4,
+     "und": 369.0,
+     "vagas": 1049.0,
+     "area": 94460.16,
+     "pop": 738.0
+    },
+    "medias": 8,
+    "hash_uids": "d74211cb9ef198528bbcaddfc05aa2f7"
+   }
+  },
+  "S06_medias": {
+   "estado": {
+    "medias": true
+   },
+   "esperado": {
+    "comum": {
+     "n": 177,
+     "und": 18477.0,
+     "vagas": 25675.0,
+     "area": 1875950.21,
+     "pop": 45399.0
+    },
+    "impacto": {
+     "n": 29,
+     "und": 4220.0,
+     "vagas": 15084.0,
+     "area": 1214411.18,
+     "pop": 10547.0
+    },
+    "medias": 177,
+    "hash_uids": "7e20fdc330d3ada85fddad5de73ea146"
+   }
+  },
+  "S07_medias_nordeste": {
+   "estado": {
+    "medias": true,
+    "regional": [
+     "NORDESTE"
+    ]
+   },
+   "esperado": {
+    "comum": {
+     "n": 12,
+     "und": 1561.0,
+     "vagas": 1795.0,
+     "area": 126231.5,
+     "pop": 3903.0
+    },
+    "impacto": {
+     "n": 3,
+     "und": 1452.0,
+     "vagas": 2095.0,
+     "area": 151333.12,
+     "pop": 3786.0
+    },
+    "medias": 12,
+    "hash_uids": "640eb04cfcfa66ee14cc66f8cc02aad9"
+   }
+  },
+  "S08_und_96_300": {
+   "estado": {
+    "range": {
+     "und": [
+      96,
+      300
+     ]
+    }
+   },
+   "esperado": {
+    "comum": {
+     "n": 87,
+     "und": 13849.0,
+     "vagas": 15263.0,
+     "area": 1067598.43,
+     "pop": 34566.0
+    },
+    "impacto": {
+     "n": 6,
+     "und": 863.0,
+     "vagas": 1943.0,
+     "area": 168747.69,
+     "pop": 1859.0
+    },
+    "medias": 87,
+    "hash_uids": "33452e684455141907538c1a2b476f1b"
+   }
+  },
+  "S09_area_min_20000": {
+   "estado": {
+    "range": {
+     "area": [
+      20000,
+      null
+     ]
+    }
+   },
+   "esperado": {
+    "comum": {
+     "n": 1,
+     "und": 284.0,
+     "vagas": 584.0,
+     "area": 23475.76,
+     "pop": 663.0
+    },
+    "impacto": {
+     "n": 26,
+     "und": 3852.0,
+     "vagas": 13737.0,
+     "area": 1178103.94,
+     "pop": 9594.0
+    },
+    "medias": 1,
+    "hash_uids": "f9f62d58db07faa815de4181c96fe492"
+   }
+  },
+  "S10_pop_max_500": {
+   "estado": {
+    "range": {
+     "pop": [
+      null,
+      500
+     ]
+    }
+   },
+   "esperado": {
+    "comum": {
+     "n": 3326,
+     "und": 36729.0,
+     "vagas": 58769.0,
+     "area": 4515315.39,
+     "pop": 90332.0
+    },
+    "impacto": {
+     "n": 6,
+     "und": 640.0,
+     "vagas": 1814.0,
+     "area": 164312.83,
+     "pop": 1343.0
+    },
+    "medias": 158,
+    "hash_uids": "cb3503ed6b5f166adecb9bd0a9790f3a"
+   }
+  },
+  "S11_enq_estacionamento": {
+   "estado": {
+    "enq": [
+     "Edificação com área de estacionamento > 10.000 m² ou mais de 400 vagas"
+    ]
+   },
+   "esperado": {
+    "comum": {
+     "n": 3345,
+     "und": 41191.0,
+     "vagas": 63326.0,
+     "area": 4822043.87,
+     "pop": 101920.0
+    },
+    "impacto": {
+     "n": 15,
+     "und": 1989.0,
+     "vagas": 10316.0,
+     "area": 786376.74,
+     "pop": 5040.0
+    },
+    "medias": 177,
+    "hash_uids": "57c7c5d615355adf7e2b092ca43f68d2"
+   }
+  },
+  "S12_emp_palmares_I13": {
+   "estado": {
+    "empreendimento": "I:13"
+   },
+   "esperado": {
+    "comum": {
+     "n": 7,
+     "und": 235.0,
+     "vagas": 449.0,
+     "area": 29975.3,
+     "pop": 615.0
+    },
+    "impacto": {
+     "n": 1,
+     "und": 464.0,
+     "vagas": 827.0,
+     "area": 56023.2,
+     "pop": 1212.0
+    },
+    "medias": 1,
+    "hash_uids": "f130553507fafe492ee7bc03a1f29b79"
+   }
+  },
+  "S13_emp_serra_I2_medias": {
+   "estado": {
+    "empreendimento": "I:2",
+    "medias": true
+   },
+   "esperado": {
+    "comum": {
+     "n": 7,
+     "und": 418.0,
+     "vagas": 1100.0,
+     "area": 61329.58,
+     "pop": 980.0
+    },
+    "impacto": {
+     "n": 1,
+     "und": 0,
+     "vagas": 581.0,
+     "area": 119605.3,
+     "pop": 0
+    },
+    "medias": 7,
+    "hash_uids": "6b80a20c924919ca7f90a51731eecb5d"
+   }
+  },
+  "S14_emp_olhos_dagua_I10": {
+   "estado": {
+    "empreendimento": "I:10"
+   },
+   "esperado": {
+    "comum": {
+     "n": 0,
+     "und": 0,
+     "vagas": 0,
+     "area": 0,
+     "pop": 0
+    },
+    "impacto": {
+     "n": 1,
+     "und": 0,
+     "vagas": 459.0,
+     "area": 31505.01,
+     "pop": 0
+    },
+    "medias": 0,
+    "hash_uids": "9e623632ad7595a48851db34f1156f39"
+   }
+  },
+  "S15_faixa_area_6000_20000": {
+   "estado": {
+    "faixa_area": [
+     "d"
+    ]
+   },
+   "esperado": {
+    "comum": {
+     "n": 167,
+     "und": 17557.0,
+     "vagas": 24227.0,
+     "area": 1805114.98,
+     "pop": 43248.0
+    },
+    "impacto": {
+     "n": 3,
+     "und": 368.0,
+     "vagas": 1347.0,
+     "area": 36307.24,
+     "pop": 953.0
+    },
+    "medias": 167,
+    "hash_uids": "3b8d6cac3042337eed63b53047292608"
+   }
+  },
+  "S16_grupo_medias": {
+   "estado": {
+    "grupo": [
+     "media"
+    ]
+   },
+   "esperado": {
+    "comum": {
+     "n": 177,
+     "und": 18477.0,
+     "vagas": 25675.0,
+     "area": 1875950.21,
+     "pop": 45399.0
+    },
+    "impacto": {
+     "n": 0,
+     "und": 0,
+     "vagas": 0,
+     "area": 0,
+     "pop": 0
+    },
+    "medias": 177,
+    "hash_uids": "11771351eb2b7bdd767ac75b8118d533"
+   }
+  },
+  "S17_uso_nao_residencial": {
+   "estado": {
+    "uso": [
+     "Não residencial"
+    ]
+   },
+   "esperado": {
+    "comum": {
+     "n": 0,
+     "und": 0,
+     "vagas": 0,
+     "area": 0,
+     "pop": 0
+    },
+    "impacto": {
+     "n": 15,
+     "und": 0,
+     "vagas": 9745.0,
+     "area": 740356.84,
+     "pop": 0
+    },
+    "medias": 0,
+    "hash_uids": "942e7290575fa9c51e4dd6713e1e5b8e"
+   }
+  },
+  "S18_emp_santa_efigenia_I25_com_regional_leste": {
+   "estado": {
+    "empreendimento": "I:25",
+    "regional": [
+     "LESTE"
+    ]
+   },
+   "esperado": {
+    "comum": {
+     "n": 39,
+     "und": 856.0,
+     "vagas": 1197.0,
+     "area": 94136.28,
+     "pop": 1902.0
+    },
+    "impacto": {
+     "n": 1,
+     "und": 0,
+     "vagas": 173.0,
+     "area": 22312.73,
+     "pop": 0
+    },
+    "medias": 4,
+    "hash_uids": "6b2ddd78980a9fd327803d1826853100"
+   }
+  },
+  "S20_emp_serra_I2": {
+   "estado": {
+    "empreendimento": "I:2"
+   },
+   "esperado": {
+    "comum": {
+     "n": 57,
+     "und": 984.0,
+     "vagas": 2266.0,
+     "area": 138060.95,
+     "pop": 2301.0
+    },
+    "impacto": {
+     "n": 1,
+     "und": 0,
+     "vagas": 581.0,
+     "area": 119605.3,
+     "pop": 0
+    },
+    "medias": 7,
+    "hash_uids": "686b5bf378cdbfd696dd7d186eeaad21"
+   }
+  },
+  "S21_emp_bandeirantes_I20_sem_medias": {
+   "estado": {
+    "empreendimento": "I:20"
+   },
+   "esperado": {
+    "comum": {
+     "n": 70,
+     "und": 119.0,
+     "vagas": 300.0,
+     "area": 40650.42,
+     "pop": 347.0
+    },
+    "impacto": {
+     "n": 1,
+     "und": 600.0,
+     "vagas": 200.0,
+     "area": 37404.09,
+     "pop": 1667.0
+    },
+    "medias": 0,
+    "hash_uids": "a5860f67d850820259d4236a2de1c35c"
+   }
+  },
+  "S22_regional_hipercentro": {
+   "estado": {
+    "regional": [
+     "HIPERCENTRO"
+    ]
+   },
+   "esperado": {
+    "comum": {
+     "n": 14,
+     "und": 1171.0,
+     "vagas": 1031.0,
+     "area": 89821.1,
+     "pop": 2419.0
+    },
+    "impacto": {
+     "n": 1,
+     "und": 0,
+     "vagas": 314.0,
+     "area": 63772.14,
+     "pop": 0
+    },
+    "medias": 9,
+    "hash_uids": "86d212ef65e3b03325527792dda1b0f0"
+   }
+  },
+  "S19_vagas_100_400_e_centro_sul_e_misto": {
+   "estado": {
+    "range": {
+     "vagas": [
+      100,
+      400
+     ]
+    },
+    "regional": [
+     "CENTRO-SUL"
+    ],
+    "uso": [
+     "Misto"
+    ]
+   },
+   "esperado": {
+    "comum": {
+     "n": 28,
+     "und": 2273.0,
+     "vagas": 4473.0,
+     "area": 358088.24,
+     "pop": 5007.0
+    },
+    "impacto": {
+     "n": 5,
+     "und": 508.0,
+     "vagas": 1412.0,
+     "area": 131442.04,
+     "pop": 1060.0
+    },
+    "medias": 28,
+    "hash_uids": "36cddd3c483cd813d1bb80b240e0cb10"
+   }
+  }
+ },
+ "graficos": {
+  "S01_sem_filtro": {
+   "comuns": {
+    "BARREIRO": 334,
+    "CENTRO-SUL": 572,
+    "PAMPULHA": 706,
+    "OESTE": 419,
+    "NORDESTE": 320,
+    "NOROESTE": 236,
+    "VENDA NOVA": 319,
+    "LESTE": 244,
+    "NORTE": 181,
+    "HIPERCENTRO": 14
+   },
+   "medias": {
+    "BARREIRO": 14,
+    "OESTE": 25,
+    "NORDESTE": 12,
+    "CENTRO-SUL": 72,
+    "HIPERCENTRO": 9,
+    "PAMPULHA": 24,
+    "VENDA NOVA": 9,
+    "NOROESTE": 8,
+    "LESTE": 2,
+    "NORTE": 2
+   },
+   "impacto": {
+    "BARREIRO": 1,
+    "CENTRO-SUL": 10,
+    "PAMPULHA": 7,
+    "OESTE": 5,
+    "NORDESTE": 3,
+    "VENDA NOVA": 1,
+    "NOROESTE": 1,
+    "HIPERCENTRO": 1
+   }
+  },
+  "S03_centro_sul_e_residencial": {
+   "comuns": {
+    "BARREIRO": 290,
+    "CENTRO-SUL": 412,
+    "PAMPULHA": 661,
+    "OESTE": 351,
+    "NORDESTE": 269,
+    "NOROESTE": 207,
+    "VENDA NOVA": 297,
+    "LESTE": 211,
+    "NORTE": 169
+   },
+   "medias": {
+    "OESTE": 12,
+    "NORDESTE": 6,
+    "VENDA NOVA": 6,
+    "NOROESTE": 3,
+    "CENTRO-SUL": 30,
+    "BARREIRO": 4,
+    "PAMPULHA": 14,
+    "LESTE": 1,
+    "NORTE": 2
+   },
+   "impacto": {
+    "PAMPULHA": 2,
+    "NORDESTE": 1,
+    "NOROESTE": 1
+   }
+  }
+ },
+ "medias_analise": {
+  "S02_regional_centro_sul": {
+   "universo_n": 572,
+   "medias_n": 72,
+   "pct_n": 12.5874,
+   "pct_und": 45.236,
+   "pct_vagas": 46.7699,
+   "pct_area": 47.8326,
+   "pct_pop": 44.6368
+  }
+ }
+}

@@ -3,275 +3,259 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel de Análise Urbanística Integrada - DALU / Suplan PBH</title>
-
-  <!-- Bibliotecas Locais -->
+  <title>Painel v2 – Edificações Comuns × Empreendimentos de Impacto | DALU / Suplan PBH</title>
   <link rel="stylesheet" href="lib/leaflet.css">
   <link rel="stylesheet" href="css/styles.css">
-  
   <script src="lib/leaflet.js"></script>
-  <script src="lib/leaflet-heat.js"></script>
   <script src="lib/chart.min.js"></script>
   <script src="lib/proj4.js"></script>
+  <script src="lib/pdf-lib.min.js"></script>
 </head>
 <body>
+  <div id="carregando" class="carregando"><div class="spin"></div><span>Carregando e validando as bases geográficas…</span></div>
 
-  <!-- Cabeçalho Institucional com Logo PBH -->
+  <!-- ================= CABEÇALHO ================= -->
   <header class="app-header">
-    <div class="header-brand">
-      <div class="header-logo-wrapper" title="Prefeitura de Belo Horizonte">
-        <img src="base/logo/logo-pbh.svg" alt="Prefeitura de Belo Horizonte" class="header-logo">
+    <div class="brand">
+      <div class="logo-box"><img src="assets/logo-pbh.svg" alt="Prefeitura de Belo Horizonte"></div>
+      <div>
+        <h1>Edificações Comuns × Empreendimentos de Impacto</h1>
+        <div class="sub">Painel de BI geoespacial para análise do licenciamento urbanístico, da ocupação territorial e das edificações próximas aos limiares de impacto</div>
+        <div class="meta">DALU / Suplan · Art. 345 da Lei Municipal nº 11.181/2019 (Plano Diretor de BH)</div>
       </div>
-      <div class="header-title-box">
-        <h1>🏙️ Análise Urbanística Integrada</h1>
-        <div class="header-subtitle">
-          Edificações Médias e Empreendimentos de Impacto Urbano
-        </div>
-        <div class="header-meta">
-          DALU / Suplan &bull; Art. 345 da Lei Municipal nº 11.181/2019 (Plano Diretor de BH)
-        </div>
-      </div>
+    </div>
+    <div class="header-acoes">
+      <span class="ref-dados" title="Data de referência das bases de dados">📅 Dados de <b id="refDados">novembro/2026</b></span>
+      <button type="button" id="btnRelatorio" class="btn-pdf" title="Gera um relatório em PDF com os dados exibidos na tela">📄 Gerar relatório PDF</button>
     </div>
   </header>
 
-  <!-- Barra de Indicadores Chave (KPIs) - Valores Totais Integrados -->
-  <section class="kpi-banner">
-    <div class="kpi-item">
-      <div class="kpi-icon med">🏢</div>
-      <div class="kpi-info">
-        <span id="kpiMedias" class="kpi-value">0</span>
-        <span class="kpi-label">Total Edificações Médias</span>
-      </div>
-    </div>
-
-    <div class="kpi-item">
-      <div class="kpi-icon imp">⚠️</div>
-      <div class="kpi-info">
-        <span id="kpiImpacto" class="kpi-value">0</span>
-        <span class="kpi-label">Total Emp. Impacto</span>
-      </div>
-    </div>
-
-    <div class="kpi-item">
-      <div class="kpi-icon">📊</div>
-      <div class="kpi-info">
-        <span id="kpiTotal" class="kpi-value">0</span>
-        <span class="kpi-label">Total Empreendimentos</span>
-      </div>
-    </div>
-
-    <div class="kpi-item">
-      <div class="kpi-icon res">🏠</div>
-      <div class="kpi-info">
-        <span id="kpiUnidades" class="kpi-value">0</span>
-        <span class="kpi-label">Total Unidades Residenciais</span>
-      </div>
-    </div>
-
-    <div class="kpi-item">
-      <div class="kpi-icon pop">👥</div>
-      <div class="kpi-info">
-        <span id="kpiPopulacao" class="kpi-value">0</span>
-        <span class="kpi-label">Total População Estimada</span>
-      </div>
-    </div>
-
-    <div class="kpi-item">
-      <div class="kpi-icon vag">🚗</div>
-      <div class="kpi-info">
-        <span id="kpiVagas" class="kpi-value">0</span>
-        <span class="kpi-label">Total Vagas de Carros</span>
-      </div>
-    </div>
-
-    <div class="kpi-item">
-      <div class="kpi-icon are">📐</div>
-      <div class="kpi-info">
-        <span id="kpiArea" class="kpi-value">0 m²</span>
-        <span class="kpi-label">Total Área Construída</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Layout Principal -->
-  <main class="app-layout">
-
-    <!-- Barra Lateral: Camadas e Filtros -->
+  <div class="app">
+    <!-- ================= PAINEL LATERAL ================= -->
     <aside class="sidebar">
 
-      <!-- Controle de Camadas & Opacidade -->
-      <div class="sidebar-section">
-        <h3 class="section-title">🗺️ Camadas & Opacidade</h3>
-
-        <!-- Camada: Limites Regionais -->
-        <div class="layer-card">
-          <div class="layer-header">
-            <label class="layer-toggle">
-              <input type="checkbox" id="chkRegional" checked>
-              <span class="layer-indicator reg"></span>
-              <span>Limites Regionais</span>
-            </label>
-          </div>
-          <div class="opacity-box">
-            <span>Opacidade:</span>
-            <input type="range" id="opRegional" class="opacity-slider" min="0" max="1" step="0.05" value="0.5">
-          </div>
+      <details open class="sec">
+        <summary>🗺️ Camadas</summary>
+        <div class="layer">
+          <label><input type="checkbox" id="chkImpacto" checked><span class="sw-lg imp"></span>Empreendimentos de impacto</label>
+          <div class="op"><input type="range" id="opImpacto" min="0" max="1" step="0.05" value="0.95"><span>95%</span></div>
         </div>
-
-        <!-- Camada: Edificações Médias -->
-        <div class="layer-card">
-          <div class="layer-header">
-            <label class="layer-toggle">
-              <input type="checkbox" id="chkMedias" checked>
-              <span class="layer-indicator med"></span>
-              <span>Edificações Médias</span>
-            </label>
-          </div>
-          <div class="opacity-box">
-            <span>Opacidade:</span>
-            <input type="range" id="opMedias" class="opacity-slider" min="0" max="1" step="0.05" value="0.9">
-          </div>
+        <div class="layer">
+          <label><input type="checkbox" id="chkComuns" checked><span class="sw-lg com"></span>Edificações comuns</label>
+          <div class="op"><input type="range" id="opComuns" min="0" max="1" step="0.05" value="0.85"><span>85%</span></div>
+          <div class="leg-mini"><span class="sw-lg com"></span>comum <span class="sw-lg med"></span>média <span class="sw-ring"></span>vários registros no local</div>
         </div>
-
-        <!-- Camada: Empreendimentos de Impacto -->
-        <div class="layer-card">
-          <div class="layer-header">
-            <label class="layer-toggle">
-              <input type="checkbox" id="chkImpacto" checked>
-              <span class="layer-indicator imp"></span>
-              <span>Empreendimentos de Impacto</span>
-            </label>
-          </div>
-          <div class="opacity-box">
-            <span>Opacidade:</span>
-            <input type="range" id="opImpacto" class="opacity-slider" min="0" max="1" step="0.05" value="0.9">
-          </div>
+        <div class="layer">
+          <label><input type="checkbox" id="chkKde"><span class="sw-lg kde"></span>Densidade de edificações (Kernel)</label>
+          <div class="op"><input type="range" id="opKde" min="0" max="1" step="0.05" value="0.7"><span>70%</span></div>
+          <div class="op raio"><span class="muted">Raio</span><input type="range" id="raioKde"><b id="raioValor"></b></div>
+          <p class="ajuda">Kernel quártico com raio em metros (SIRGAS 2000 / UTM 23S). Usa as edificações comuns filtradas.</p>
         </div>
+        <div class="layer">
+          <label><input type="checkbox" id="chkRegional" checked><span class="sw-lg reg"></span>Regionais</label>
+          <div class="op"><input type="range" id="opRegional" min="0" max="1" step="0.05" value="0.6"><span>60%</span></div>
+        </div>
+        <label class="ctx"><input type="checkbox" id="chkContexto"> Mostrar registros fora do filtro em cinza (destaque)</label>
+      </details>
+
+      <div class="filtros-topo">
+        <span>🔎 Filtros</span>
+        <button type="button" class="btn-limpar" data-limpar-tudo title="Remove todos os filtros e seleções">⟲ Limpar filtros</button>
       </div>
 
-      <!-- Filtros Urbanísticos -->
-      <div class="sidebar-section">
-        <div class="section-title-row">
-          <h3 class="section-title" style="margin-bottom: 0;">🔍 Filtros</h3>
-          <button id="btnReset" class="btn-reset" title="Limpar todos os filtros e restaurar visualização">
-            <span>🔄</span> Limpar Filtros
-          </button>
+      <details open class="sec">
+        <summary>🎯 Filtro especial</summary>
+        <label id="cardMedias" class="card-medias">
+          <input type="checkbox" id="chkMedias">
+          <span><b>Edificações Médias – Próximas aos limiares de impacto</b>
+          <small>Somente edificações comuns com: vagas 100–400 <b>OU</b> unidades 96–300 <b>OU</b> área 6.000–20.000 m² (limites inclusivos). Não altera os empreendimentos de impacto.</small></span>
+        </label>
+      </details>
+
+      <details open class="sec">
+        <summary>📍 Empreendimento, território, uso e enquadramento</summary>
+
+        <label class="lbl">Empreendimento de Impacto (Nome)</label>
+        <div class="dd" id="ddEmp">
+          <button type="button" class="dd-btn"><span class="dd-txt" id="ddEmpTxt">Todos os empreendimentos</span><span class="dd-seta">▾</span></button>
+          <div class="dd-pnl" hidden>
+            <input type="search" id="empBusca" class="inp" placeholder="Buscar por nome ou bairro…" autocomplete="off">
+            <div id="empLista" class="emp-lista"></div>
+          </div>
+        </div>
+        <div id="empSel" class="emp-sel" hidden>
+          <div id="empSelNome"></div>
+          <button type="button" id="empLimpar" class="btn-sm">✕ Remover seleção</button>
         </div>
 
-        <div class="form-group">
-          <label for="filterRegional">Regional</label>
-          <select id="filterRegional" class="form-control">
-            <option value="TODAS">Todas as Regionais</option>
-          </select>
+        <div class="terr-lock">
+          <label class="lbl">Regional</label>
+          <div class="dd" id="ddRegional" data-dim="regional">
+            <button type="button" class="dd-btn"><span class="dd-txt" id="ddRegionalTxt">Todas as regionais</span><span class="dd-seta">▾</span></button>
+            <div class="dd-pnl" hidden>
+              <div class="dd-acoes"><button type="button" class="lnk" data-limpar-dim="regional">Limpar seleção</button></div>
+              <div id="lstRegional" class="opt-lista"></div>
+            </div>
+          </div>
+
+          <label class="lbl">Bairro <span id="bairroInfo" class="muted"></span></label>
+          <div class="dd" id="ddBairro" data-dim="bairro">
+            <button type="button" class="dd-btn"><span class="dd-txt" id="ddBairroTxt">Todos os bairros</span><span class="dd-seta">▾</span></button>
+            <div class="dd-pnl" hidden>
+              <input type="search" id="bairroBusca" class="inp" placeholder="Buscar bairro…" autocomplete="off">
+              <div class="dd-acoes"><button type="button" class="lnk" data-limpar-dim="bairro">Limpar seleção</button></div>
+              <div id="lstBairro" class="opt-lista alta"></div>
+            </div>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="filterBairro">Bairro</label>
-          <select id="filterBairro" class="form-control">
-            <option value="TODOS">Todos os Bairros</option>
-          </select>
-        </div>
+        <label class="lbl">Uso</label>
+        <div id="lstUso" class="opt-lista inline"></div>
 
-        <div class="form-group">
-          <label for="filterEmpreendimento">Empreendimento de Impacto (Nome)</label>
-          <select id="filterEmpreendimento" class="form-control">
-            <option value="TODOS">Todos os Empreendimentos</option>
-          </select>
+        <label class="lbl">Enquadramento (Impacto)</label>
+        <div class="dd" id="ddEnq" data-dim="enq">
+          <button type="button" class="dd-btn"><span class="dd-txt" id="ddEnqTxt">Todos os enquadramentos</span><span class="dd-seta">▾</span></button>
+          <div class="dd-pnl" hidden>
+            <div class="dd-acoes"><button type="button" class="lnk" data-limpar-dim="enq">Limpar seleção</button></div>
+            <div id="lstEnq" class="opt-lista enq"></div>
+            <p class="ajuda">Nomes uniformizados; um empreendimento pode ter mais de um enquadramento. Atua só sobre empreendimentos de impacto.</p>
+          </div>
         </div>
+        <p class="ajuda">Listas com seleção múltipla. Contagens: <span class="sw c"></span> comuns · <span class="sw i"></span> <b>impacto</b>, considerando os demais filtros.</p>
+      </details>
 
-        <div class="form-group">
-          <label for="filterEnquadramento">Enquadramento (Impacto)</label>
-          <select id="filterEnquadramento" class="form-control">
-            <option value="TODOS">Todos os Enquadramentos</option>
-          </select>
-        </div>
-      </div>
+      <details open class="sec">
+        <summary>📏 Quantitativos (mín. / máx.)</summary>
+        <div class="range-row"><span>Unidades residenciais</span><input id="rg_und_min" type="number" min="0" class="inp"><input id="rg_und_max" type="number" min="0" class="inp"><button type="button" class="lnk" data-limpar-dim="range_und">×</button></div>
+        <div class="range-row"><span>Vagas</span><input id="rg_vagas_min" type="number" min="0" class="inp"><input id="rg_vagas_max" type="number" min="0" class="inp"><button type="button" class="lnk" data-limpar-dim="range_vagas">×</button></div>
+        <div class="range-row"><span>Área construída (m²)</span><input id="rg_area_min" type="number" min="0" class="inp"><input id="rg_area_max" type="number" min="0" class="inp"><button type="button" class="lnk" data-limpar-dim="range_area">×</button></div>
+        <div class="range-row"><span>População estimada</span><input id="rg_pop_min" type="number" min="0" class="inp"><input id="rg_pop_max" type="number" min="0" class="inp"><button type="button" class="lnk" data-limpar-dim="range_pop">×</button></div>
+        <p class="ajuda">Valem para as duas camadas. Com um limite informado, registros sem o valor (“Não informado”) ficam de fora.</p>
+      </details>
 
     </aside>
 
-    <!-- Centro: Mapa Interativo -->
-    <section class="map-container-wrapper">
-      <div id="map"></div>
+    <!-- ================= CONTEÚDO ================= -->
+    <main class="conteudo">
+      <div class="chips-bar"><span class="chips-tit">Filtros ativos:</span><div id="chips" class="chips"></div></div>
 
-      <!-- Legenda do Mapa -->
-      <div class="map-legend">
-        <h4>Legenda Temática</h4>
-        <div class="legend-item">
-          <span class="layer-indicator reg"></span>
-          <span>Limites das Regionais</span>
-        </div>
-        <div class="legend-item">
-          <span class="layer-indicator med"></span>
-          <span>Edificações Médias (Estudo)</span>
-        </div>
-        <div class="legend-item">
-          <span class="layer-indicator imp"></span>
-          <span>Empreendimentos de Impacto (Estudo)</span>
-        </div>
-      </div>
-    </section>
+      <!-- KPIs -->
+      <section class="kpis">
+        <div class="kpi"><div class="k-tit"><span class="dot com"></span>Edificações comuns</div><div class="k-val" id="kN_comuns">0</div><div class="k-sub">registros filtrados</div></div>
+        <div class="kpi"><div class="k-tit"><span class="dot med"></span>Edificações médias</div><div class="k-val" id="kN_medias">0</div><div class="k-sub" id="kN_medias_pct"></div></div>
+        <div class="kpi"><div class="k-tit"><span class="dot imp"></span>Empreendimentos de impacto</div><div class="k-val" id="kN_impacto">0</div><div class="k-sub">registros filtrados</div></div>
+        <div class="kpi duplo"><div class="k-tit">🏠 Unidades residenciais</div>
+          <div class="k-par"><span class="dot com"></span><b id="k_und_c">0</b><span class="dot imp"></span><b id="k_und_i">0</b></div><div class="k-sub" id="k_und_nota"></div></div>
+        <div class="kpi duplo"><div class="k-tit">🚗 Vagas</div>
+          <div class="k-par"><span class="dot com"></span><b id="k_vagas_c">0</b><span class="dot imp"></span><b id="k_vagas_i">0</b></div><div class="k-sub" id="k_vagas_nota"></div></div>
+        <div class="kpi duplo"><div class="k-tit">📐 Área construída (m²)</div>
+          <div class="k-par"><span class="dot com"></span><b id="k_area_c">0</b><span class="dot imp"></span><b id="k_area_i">0</b></div><div class="k-sub" id="k_area_nota"></div></div>
+        <div class="kpi duplo"><div class="k-tit">👥 População estimada</div>
+          <div class="k-par"><span class="dot com"></span><b id="k_pop_c">0</b><span class="dot imp"></span><b id="k_pop_i">0</b></div><div class="k-sub" id="k_pop_nota"></div></div>
+      </section>
 
-    <!-- Painel Lateral Direito: Gráficos de Análise Urbanística -->
-    <aside class="analytics-panel">
-      
-      <!-- Gráfico por Bairro -->
-      <div class="chart-card">
-        <div class="chart-header">
-          <span class="chart-title">🏘️ Bairros (Concentração)</span>
+      <!-- Mapa + análises -->
+      <section class="linha-mapa">
+        <div class="mapa-box">
+          <div id="map"></div>
+          <div class="legenda">
+            <h4>Legenda</h4>
+            <div><span class="sw-lg imp"></span>Empreendimento de impacto</div>
+            <div><span class="sw-lg com"></span>Edificação comum</div>
+            <div><span class="sw-lg med"></span>Edificação média</div>
+            <div><span class="sw-lg reg-l"></span>Limite de regional</div>
+            <div id="kdeLegenda" hidden>
+              <div class="kde-tit">Densidade (edificações/km²)</div>
+              <div class="kde-grad"></div>
+              <div class="kde-esc"><span>baixa</span><span><b id="kdeMax">0</b> máx.</span></div>
+              <small id="kdeInfo"></small>
+            </div>
+          </div>
         </div>
-        <div class="chart-canvas-box" style="height: 180px;">
-          <canvas id="chartBairro"></canvas>
+        <div class="analises">
+          <div class="card">
+            <div class="card-h">⚖️ Comparação: empreendimento × edificações comuns do bairro</div>
+            <div id="cmpCorpo"></div>
+          </div>
+          <div class="card">
+            <div class="card-h">🏘️ Edificações comuns × médias × empreendimentos de impacto</div>
+            <div id="comCorpo"></div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Gráfico Comparativo de Vagas -->
-      <div class="chart-card">
-        <div class="chart-header">
-          <span class="chart-title">🚗 Vagas de Carros Geradas</span>
-        </div>
-        <div class="chart-canvas-box" style="height: 100px;">
-          <canvas id="chartVagas"></canvas>
-        </div>
-      </div>
+      <!-- Gráficos -->
+      <section class="graficos-cab">
+        <h2>Análises interativas <small>clique nas barras para filtrar · clique de novo para desmarcar · seleções em gráficos diferentes se combinam (E)</small></h2>
+        <label>Escala dos gráficos
+          <select id="escala"><option value="n">Quantidade</option><option value="pct">% do grupo</option></select></label>
+      </section>
 
-      <!-- Gráfico Comparativo de Unidades Residenciais -->
-      <div class="chart-card">
-        <div class="chart-header">
-          <span class="chart-title">🏠 Unidades Residenciais Geradas</span>
+      <section class="graficos">
+        <div class="ch-card larga" data-chart="grupo">
+          <div class="ch-h"><span>Comparação entre grupos</span>
+            <select id="metGrupo"><option value="n">Quantidade de registros</option><option value="und">Unidades residenciais</option><option value="vagas">Vagas</option><option value="area">Área construída (m²)</option><option value="pop">População estimada</option></select>
+            <span class="chart-sel"></span><button type="button" class="lnk" data-limpar-dim="grupo">limpar</button></div>
+          <div class="ch-box"><canvas id="chGrupo"></canvas></div>
         </div>
-        <div class="chart-canvas-box" style="height: 100px;">
-          <canvas id="chartUnidades"></canvas>
+        <div class="ch-card" data-chart="regional">
+          <div class="ch-h"><span>Registros por Regional</span><span class="chart-sel"></span><button type="button" class="lnk" data-limpar-dim="regional">limpar</button></div>
+          <div class="ch-box alta"><canvas id="chRegional"></canvas></div>
         </div>
-      </div>
-
-      <!-- Gráfico Comparativo de População Estimada -->
-      <div class="chart-card">
-        <div class="chart-header">
-          <span class="chart-title">👥 População Estimada Gerada</span>
+        <div class="ch-card" data-chart="bairro">
+          <div class="ch-h"><span>Bairros com maior concentração (top 15)</span>
+            <select id="ordBairro"><option value="comuns">ordenar: comuns</option><option value="medias">ordenar: médias</option><option value="impacto">ordenar: impacto</option></select>
+            <span class="chart-sel"></span><button type="button" class="lnk" data-limpar-dim="bairro">limpar</button></div>
+          <div class="ch-box" id="boxBairro"><canvas id="chBairro"></canvas></div>
         </div>
-        <div class="chart-canvas-box" style="height: 100px;">
-          <canvas id="chartPopulacao"></canvas>
+        <div class="ch-card" data-chart="uso">
+          <div class="ch-h"><span>Distribuição por Uso</span><span class="chart-sel"></span><button type="button" class="lnk" data-limpar-dim="uso">limpar</button></div>
+          <div class="ch-box"><canvas id="chUso"></canvas></div>
         </div>
-      </div>
+        <div class="ch-card" data-chart="enq">
+          <div class="ch-h"><span>Enquadramento dos empreendimentos de impacto</span><span class="chart-sel"></span><button type="button" class="lnk" data-limpar-dim="enq">limpar</button></div>
+          <div class="ch-box alta"><canvas id="chEnq"></canvas></div>
+          <p class="ch-nota">Um empreendimento pode ter mais de um enquadramento: a soma das barras pode superar o total de empreendimentos.</p>
+        </div>
+        <div class="ch-card" data-chart="faixa_und">
+          <div class="ch-h"><span>Unidades residenciais por faixa <small class="muted">(soma do próprio dado)</small></span><span class="chart-sel"></span><button type="button" class="lnk" data-limpar-dim="faixa_und">limpar</button></div>
+          <div class="ch-box"><canvas id="chFaixa_und"></canvas></div>
+        </div>
+        <div class="ch-card" data-chart="faixa_vagas">
+          <div class="ch-h"><span>Vagas por faixa <small class="muted">(soma do próprio dado)</small></span><span class="chart-sel"></span><button type="button" class="lnk" data-limpar-dim="faixa_vagas">limpar</button></div>
+          <div class="ch-box"><canvas id="chFaixa_vagas"></canvas></div>
+        </div>
+        <div class="ch-card" data-chart="faixa_area">
+          <div class="ch-h"><span>Área construída (m²) por faixa <small class="muted">(soma do próprio dado)</small></span><span class="chart-sel"></span><button type="button" class="lnk" data-limpar-dim="faixa_area">limpar</button></div>
+          <div class="ch-box"><canvas id="chFaixa_area"></canvas></div>
+        </div>
+        <div class="ch-card" data-chart="faixa_pop">
+          <div class="ch-h"><span>População estimada por faixa <small class="muted">(soma do próprio dado)</small></span><span class="chart-sel"></span><button type="button" class="lnk" data-limpar-dim="faixa_pop">limpar</button></div>
+          <div class="ch-box"><canvas id="chFaixa_pop"></canvas></div>
+        </div>
+      </section>
 
-    </aside>
+      <footer class="rodape">
+        <div><b>Órgão responsável:</b> Diretoria de Análise de Licenciamentos Urbanísticos Especiais (DALU) / Subsecretaria de Planejamento Urbano (Suplan)</div>
+        <div><b>Dados de referência:</b> novembro/2026</div>
+        <div><b>Fonte:</b> Banco de Dados Suplan (2020–2026) e Censo Demográfico IBGE (2022) · Mapas de fundo: © OpenStreetMap contributors · Imagem: Esri, Maxar, Earthstar Geographics</div>
+      </footer>
+    </main>
+  </div>
 
-  </main>
-
-  <!-- Rodapé Institucional -->
-  <footer class="app-footer">
-    <div>
-      <strong>Órgão Responsável:</strong> Diretoria de Análise de Licenciamentos Urbanísticos Especiais (DALU) / Subsecretaria de Planejamento Urbano (Suplan)
-    </div>
-    <div>
-      <strong>Fonte:</strong> Banco de Dados Suplan (2020–2026) e Censo Demográfico IBGE (2022)
-    </div>
-  </footer>
-
-  <!-- Scripts da Aplicação -->
-  <script src="js/data-service.js"></script>
-  <script src="js/map.js"></script>
-  <script src="js/charts.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/normalize.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/data-loader.js"></script>
+  <script src="js/filter-state.js"></script>
+  <script src="js/filter-engine.js"></script>
+  <script src="js/kde.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/map-view.js"></script>
+  <script src="js/charts-view.js"></script>
+  <script src="js/sidebar-view.js"></script>
+  <script src="js/panels-view.js"></script>
+  <script src="js/report-pdf.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
