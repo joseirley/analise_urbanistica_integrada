@@ -1,5 +1,14 @@
 # Guia de uso
 
+## Página de introdução
+
+O endereço do painel abre numa **página de introdução**, que explica o objetivo do relatório, o contexto dos três grupos analisados (comuns, médias e impacto), as bases de dados, o tratamento dos dados, os filtros e a lógica de seleção, como ler cada parte da tela e os cuidados na interpretação. Os números citados vêm dos próprios dados.
+
+- O botão **Ir para o relatório**, no fim da página (ou o atalho no sumário), abre o relatório. Os dados carregam enquanto a introdução é lida.
+- No relatório, o botão **← Introdução**, no cabeçalho, volta para a introdução. O botão "voltar" do navegador também funciona.
+- Para abrir direto no relatório, use o endereço com `#painel` (ex.: `https://joseirley.github.io/analise_urbanistica_integrada/#painel`).
+
+
 ## Barra lateral (à esquerda)
 
 **1. Camadas**: liga e desliga cada camada e ajusta a opacidade dela.

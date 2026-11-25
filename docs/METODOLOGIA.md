@@ -101,5 +101,5 @@ O mapa de fundo é incluído quando o servidor de mapas permite a cópia da imag
 | Nível | Como |
 |---|---|
 | Referência independente | `tests/referencia_python.py` recalcula 22 cenários em Python puro, sem usar o código do painel. `tests/teste_motor.js` compara: mesmos registros (hash dos identificadores), mesmas somas, mesmos gráficos e percentuais — 310 verificações |
-| Interface | `tests/teste_interface.py` (Playwright + Chrome): 54 testes com cliques reais, incluindo a geração e a conferência do conteúdo do PDF |
+| Interface | `tests/teste_interface.py` (Playwright + Chrome): 60 testes com cliques reais, partindo da página de introdução, incluindo a geração e a conferência do conteúdo do PDF |
 | Tempo de execução | `js/validation.js` confere, a cada interação, indicadores × registros, mapa × filtro, gráficos × universo, comparativo e kernel. As divergências são registradas no console |

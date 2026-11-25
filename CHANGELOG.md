@@ -11,6 +11,7 @@ Nova versão do painel, agora comparando **edificações comuns** com **empreend
 - Data de referência dos dados (novembro/2026) exibida no painel e no relatório.
 
 ### Novas funcionalidades
+- **Página de introdução** como entrada do relatório (objetivo, contexto, bases, tratamento dos dados, filtros, como ler e cuidados), com o botão **Ir para o relatório** e, no relatório, o botão **← Introdução**.
 - Filtro especial **Edificações Médias** (vagas 100–400 OU unidades 96–300 OU área 6.000–20.000 m²).
 - Seleção de empreendimento de impacto com filtragem automática das edificações comuns do mesmo bairro.
 - Comparativo **comuns × médias × impacto**: totais, média por registro e participação.
@@ -24,7 +25,7 @@ Nova versão do painel, agora comparando **edificações comuns** com **empreend
 - Etiquetas de filtros ativos e botão **Limpar filtros**.
 
 ### Qualidade
-- Validação independente em Python (22 cenários, 310 verificações), 54 testes de interface e verificações de consistência a cada interação.
+- Validação independente em Python (22 cenários, 310 verificações), 60 testes de interface e verificações de consistência a cada interação.
 
 ### Organização do repositório
 - Painel v2 na raiz (publicado no GitHub Pages); v1 movido para `versao_anterior/`.

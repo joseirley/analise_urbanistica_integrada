@@ -26,7 +26,25 @@ with sync_playwright() as p:
     erros = []
     pg.on('pageerror', lambda e: erros.append(str(e)))
     pg.goto(URL)
-    pg.wait_for_function('window.painel && window.painel.ultimaValidacao', timeout=30000)
+    pg.wait_for_function('window.painel && window.painel.ultimaValidacao && window.Intro.pronto', timeout=30000)
+
+    # 00. Página de introdução (entrada) e navegação introdução ⇄ relatório
+    e0 = REF['S01_sem_filtro']['esperado']
+    fmt = lambda n: f'{n:,}'.replace(',', '.')
+    nums = pg.evaluate("[...document.querySelectorAll('.intro-grupos .ig-n')].map(e => e.textContent)")
+    cobre = pg.evaluate("[[0.5,0.5],[0.1,0.9],[0.9,0.1]].every(([x,y]) => !!document.elementFromPoint(innerWidth*x, innerHeight*y).closest('#intro'))")
+    reg(pg.is_visible('#intro') and cobre, '00a Abre na página de introdução (cobre toda a tela)')
+    reg(nums == [fmt(e0['impacto']['n']), fmt(e0['comum']['n']), fmt(e0['medias'])], f'00b Números da introdução = referência {nums}')
+    txt_intro = pg.inner_text('#intro')
+    reg(all(t in txt_intro for t in ['Objetivo', 'Contexto', 'Bases de dados', 'Tratamento dos dados', 'Filtros e lógica de seleção', 'Como ler o relatório', 'novembro/2026']),
+        '00c Introdução com objetivo, contexto, bases, tratamento, filtros e leitura')
+    btn = pg.locator('#btnIrRelatorio')
+    reg(btn.inner_text() == 'Ir para o relatório' and btn.is_enabled(), '00d Botão final "Ir para o relatório"')
+    btn.click(); pg.wait_for_timeout(500)
+    reg(not pg.is_visible('#intro') and pg.evaluate('location.hash') == '#painel', '00e Botão abre o relatório')
+    pg.click('#btnIntro'); pg.wait_for_timeout(400)
+    reg(pg.is_visible('#intro') and pg.evaluate('location.hash') == '', '00f Botão "Introdução" volta para a introdução')
+    pg.click('#btnIrRelatorio'); pg.wait_for_timeout(500)
 
     def esperar():
         pg.wait_for_timeout(450)

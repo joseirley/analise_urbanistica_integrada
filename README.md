@@ -16,6 +16,7 @@ Painel de BI geoespacial da Prefeitura de Belo Horizonte para comparar **edifica
 
 ## O que o painel faz
 
+- **Página de introdução**: explica objetivo, contexto, bases, tratamento dos dados e filtros. O botão **Ir para o relatório** abre o painel, e **← Introdução** volta. O endereço com `#painel` abre direto no relatório.
 - **Mapa interativo**: edificações comuns, empreendimentos de impacto, regionais e densidade de edificações (kernel com raio ajustável em metros). Cada camada pode ser ligada e desligada e tem controle de opacidade. O mapa de fundo alterna entre *Street* e *Satellite*.
 - **Filtro especial "Edificações Médias"**: mostra apenas as edificações comuns próximas aos limiares de impacto (vagas 100–400 **ou** unidades 96–300 **ou** área 6.000–20.000 m²).
 - **Filtros** de empreendimento de impacto, regional, bairro, uso, enquadramento e faixas numéricas (unidades, vagas, área, população), em listas suspensas com seleção múltipla.
@@ -52,7 +53,7 @@ O site é publicado pelo GitHub Pages a partir da **raiz do branch `main`**. Qua
 ## Estrutura do repositório
 
 ```
-├── index.html                # Painel v2 (página publicada)
+├── index.html                # Introdução + relatório (página publicada)
 ├── css/styles.css
 ├── js/
 │   ├── config.js             # Campos reais, limiares, faixas, cores, mapas de fundo, data de referência
@@ -66,6 +67,7 @@ O site é publicado pelo GitHub Pages a partir da **raiz do branch `main`**. Qua
 │   ├── charts-view.js        # Gráficos com filtragem cruzada
 │   ├── sidebar-view.js       # Camadas e filtros (listas suspensas)
 │   ├── panels-view.js        # Indicadores, etiquetas, comparativos
+│   ├── intro.js              # Página de introdução e navegação introdução ⇄ relatório
 │   ├── report-pdf.js         # Relatório PDF
 │   ├── util.js               # Formatação pt-BR
 │   └── app.js                # Orquestração
@@ -107,7 +109,7 @@ O SRC é lido de cada arquivo. As camadas são reprojetadas para WGS 84 apenas p
 ## Qualidade e validação
 
 - Um script **independente em Python** (`tests/referencia_python.py`) recalcula 22 cenários de filtro direto dos GeoJSON. O motor do painel reproduz os mesmos registros e as mesmas somas: **310/310 verificações**.
-- **54 testes de interface** no navegador (Playwright) clicam em gráficos, filtros, mapa, kernel, mapa de fundo e relatório PDF.
+- **60 testes de interface** no navegador (Playwright) percorrem a introdução e clicam em gráficos, filtros, mapa, kernel, mapa de fundo e relatório PDF.
 - A cada interação, o painel reconta o universo filtrado e confere indicadores, pontos do mapa, gráficos, comparativo e kernel. As divergências aparecem no console do navegador (F12).
 
 Detalhes em [tests/RESULTADO_TESTES.md](tests/RESULTADO_TESTES.md).

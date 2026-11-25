@@ -12,6 +12,155 @@
   <script src="lib/pdf-lib.min.js"></script>
 </head>
 <body>
+  <!-- ================= INTRODUÇÃO (página de entrada) ================= -->
+  <section id="intro" class="intro" aria-label="Introdução ao relatório">
+    <header class="intro-hero">
+      <div class="intro-hero-in">
+        <div class="intro-marca">
+          <div class="logo-box"><img src="assets/logo-pbh.svg" alt="Prefeitura de Belo Horizonte"></div>
+          <span>DALU / Suplan · Prefeitura de Belo Horizonte</span>
+        </div>
+        <p class="intro-kicker">Relatório interativo de análise urbanística</p>
+        <h1>Edificações Comuns × Empreendimentos de Impacto</h1>
+        <p class="intro-lead">Como as edificações que não passam pelo licenciamento de impacto contribuem para a ocupação, o adensamento e a demanda por infraestrutura em Belo Horizonte, inclusive quando seus parâmetros construtivos ficam próximos aos limiares de enquadramento como empreendimento de impacto.</p>
+        <div class="intro-selos">
+          <span>📅 Dados de <b class="js-ref">novembro/2026</b></span>
+          <span>⚖️ Art. 345 da Lei nº 11.181/2019 (Plano Diretor)</span>
+          <span>🗺️ SIRGAS 2000 / UTM 23S</span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="intro-sumario" aria-label="Sumário">
+      <a href="#sec-objetivo">Objetivo</a><a href="#sec-contexto">Contexto</a><a href="#sec-bases">Bases de dados</a>
+      <a href="#sec-tratamento">Tratamento dos dados</a><a href="#sec-filtros">Filtros</a><a href="#sec-leitura">Como ler</a>
+      <a href="#sec-limites">Cuidados na interpretação</a>
+      <button type="button" class="intro-atalho" data-ir-relatorio>Ir para o relatório →</button>
+    </nav>
+
+    <main class="intro-corpo">
+
+      <section id="sec-objetivo" class="intro-sec">
+        <h2><span>1</span>Objetivo</h2>
+        <p>O relatório reúne, num mesmo ambiente, mapa, indicadores, comparativos e gráficos interativos para apoiar a análise técnica do licenciamento urbanístico. Ele permite:</p>
+        <ul class="intro-lista">
+          <li><b>Comparar</b> os empreendimentos de impacto com o conjunto das edificações comuns, no município, numa regional ou num bairro;</li>
+          <li><b>Identificar</b> as edificações médias, isto é, edificações comuns com parâmetros próximos aos limiares de impacto, e medir o peso delas na ocupação;</li>
+          <li><b>Localizar</b> onde a produção imobiliária se concentra, com mapa de densidade e rankings por regional e bairro;</li>
+          <li><b>Documentar</b> cada recorte analisado com um relatório em PDF que reproduz os dados em tela.</li>
+        </ul>
+      </section>
+
+      <section id="sec-contexto" class="intro-sec">
+        <h2><span>2</span>Contexto: os três grupos analisados</h2>
+        <p>Pelo Plano Diretor de Belo Horizonte (Lei nº 11.181/2019, art. 345), empreendimentos que ultrapassam determinados limites de porte ou de atividade passam por licenciamento urbanístico específico, por causa do impacto que geram sobre a vizinhança e a infraestrutura. As demais edificações seguem o fluxo comum de aprovação, ainda que, somadas, também produzam efeitos relevantes no território.</p>
+        <div class="intro-grupos">
+          <div class="ig imp">
+            <div class="ig-n js-n-impacto">29</div>
+            <h3>Empreendimentos de impacto</h3>
+            <p>Enquadrados no licenciamento de impacto, por exemplo por terem mais de 20.000 m² de área, mais de 300 unidades habitacionais ou mais de 400 vagas.</p>
+          </div>
+          <div class="ig com">
+            <div class="ig-n js-n-comuns">3.345</div>
+            <h3>Edificações comuns</h3>
+            <p>Edificações aprovadas no fluxo comum, sem enquadramento como empreendimento de impacto.</p>
+          </div>
+          <div class="ig med">
+            <div class="ig-n js-n-medias">177</div>
+            <h3>Edificações médias</h3>
+            <p>Edificações comuns <b>próximas aos limiares</b>: vagas entre 100 e 400 <b>ou</b> unidades residenciais entre 96 e 300 <b>ou</b> área construída entre 6.000 e 20.000 m² (limites inclusivos).</p>
+          </div>
+        </div>
+        <div class="intro-destaque" id="introDestaque">
+          <b>Retrato da base completa:</b> carregando os números…
+        </div>
+      </section>
+
+      <section id="sec-bases" class="intro-sec">
+        <h2><span>3</span>Bases de dados</h2>
+        <table class="intro-tab">
+          <thead><tr><th>Camada</th><th>Arquivo</th><th class="num">Registros</th><th>Conteúdo principal</th></tr></thead>
+          <tbody>
+            <tr><td>Empreendimentos de impacto</td><td><code>empreendimento_impacto_estudo_2.geojson</code></td><td class="num js-n-impacto">29</td><td>Nome, regional, bairro, uso, enquadramento, unidades, vagas, área construída, população estimada, ano do PLU</td></tr>
+            <tr><td>Edificações comuns</td><td><code>edificacoes_2.geojson</code></td><td class="num js-n-comuns">3.345</td><td>Requerimento, regional, bairro, uso, unidades, vagas, área construída, população estimada, situação do alvará</td></tr>
+            <tr><td>Regionais</td><td><code>regional.geojson</code></td><td class="num js-n-regionais">10</td><td>Limites das regionais administrativas, inclusive a Hipercentro</td></tr>
+          </tbody>
+        </table>
+        <p class="intro-nota">Fonte: Banco de Dados Suplan (2020–2026) e Censo Demográfico IBGE (2022). As três camadas estão em SIRGAS 2000 / UTM 23S (EPSG:31983). Dados de referência: <b class="js-ref">novembro/2026</b>.</p>
+      </section>
+
+      <section id="sec-tratamento" class="intro-sec">
+        <h2><span>4</span>Tratamento dos dados</h2>
+        <p>Os arquivos de origem <b>não são alterados</b>. Todo tratamento é feito em memória, no navegador, sempre que o relatório é aberto:</p>
+        <div class="intro-cards">
+          <div class="ic"><h4>Sistema de referência</h4><p>O SRC é lido de cada arquivo. As coordenadas são convertidas para WGS 84 apenas para desenhar o mapa; distâncias e densidade são calculadas em metros (UTM). Todos os pontos caem dentro da regional informada no atributo.</p></div>
+          <div class="ic"><h4>Uso</h4><p>Grafias diferentes (RESIDENCIAL, Residencial…) foram unificadas em três categorias: <b>Residencial</b>, <b>Não residencial</b> e <b>Misto</b>.</p></div>
+          <div class="ic"><h4>Enquadramento</h4><p>O campo original combina critérios separados por "/" e tem redações variadas. Cada critério foi associado a uma categoria única, e cada empreendimento pode ter mais de uma.</p><ul class="intro-enq" id="introEnq"></ul></div>
+          <div class="ic"><h4>População estimada</h4><p>Nas edificações comuns, é o número de unidades residenciais multiplicado pela média de moradores por domicílio ocupado do bairro (Censo 2022), arredondado. Nos empreendimentos de impacto, vem da base de estudo, onde estava em texto e foi convertida para número.</p></div>
+          <div class="ic"><h4>Valores não informados</h4><p>Aparecem como "Não informado" (por exemplo, unidades residenciais de empreendimentos não residenciais). Nas somas contam como zero; nas médias por registro, entram só os registros com valor.</p></div>
+          <div class="ic"><h4>Bairros e coordenadas</h4><p>Alguns bairros se estendem por duas regionais; na comparação por bairro, considera-se o bairro inteiro. Edificações com as mesmas coordenadas aparecem como um único ponto, com navegação entre os registros.</p></div>
+        </div>
+      </section>
+
+      <section id="sec-filtros" class="intro-sec">
+        <h2><span>5</span>Filtros e lógica de seleção</h2>
+        <p>Todos os filtros alimentam um <b>estado único</b>: mapa, indicadores, comparativos, gráficos e relatório PDF mostram sempre o mesmo conjunto de registros.</p>
+        <table class="intro-tab">
+          <thead><tr><th>Filtro</th><th>O que faz</th><th>Atua sobre</th></tr></thead>
+          <tbody>
+            <tr><td><b>Edificações Médias</b> (filtro especial)</td><td>Mantém só as edificações comuns próximas aos limiares de impacto</td><td>Edificações comuns</td></tr>
+            <tr><td><b>Empreendimento de Impacto (Nome)</b></td><td>Seleciona um empreendimento e filtra automaticamente as edificações comuns do <b>mesmo bairro</b>, para comparação. Os filtros de Regional e Bairro ficam suspensos enquanto houver seleção</td><td>Ambos</td></tr>
+            <tr><td><b>Regional</b> e <b>Bairro</b></td><td>Recorte territorial, com seleção múltipla</td><td>Ambos</td></tr>
+            <tr><td><b>Uso</b></td><td>Residencial, Não residencial, Misto</td><td>Ambos</td></tr>
+            <tr><td><b>Enquadramento (Impacto)</b></td><td>Categorias uniformizadas de enquadramento</td><td>Empreendimentos de impacto</td></tr>
+            <tr><td><b>Quantitativos</b> (mín./máx.)</td><td>Faixas de unidades, vagas, área e população. Com um limite informado, registros sem o valor ficam de fora</td><td>Ambos</td></tr>
+            <tr><td><b>Cliques nos gráficos e no mapa</b></td><td>Clicar numa barra ou numa regional aplica o filtro correspondente; clicar de novo desfaz</td><td>Ambos</td></tr>
+          </tbody>
+        </table>
+        <div class="intro-regras">
+          <div><b>E</b> entre filtros diferentes<small>Regional Centro-Sul <b>e</b> uso Residencial = registros que atendem às duas condições</small></div>
+          <div><b>OU</b> dentro do mesmo filtro<small>Regionais Pampulha <b>ou</b> Oeste = registros de qualquer uma delas</small></div>
+          <div><b>Visual ≠ filtro</b><small>Ligar/desligar camadas, opacidade e mapa de fundo não alteram números</small></div>
+        </div>
+      </section>
+
+      <section id="sec-leitura" class="intro-sec">
+        <h2><span>6</span>Como ler o relatório</h2>
+        <div class="intro-passos">
+          <div><span>A</span><h4>Barra lateral</h4><p>Camadas do mapa, filtro especial de edificações médias, filtros e botão <b>Limpar filtros</b>. As etiquetas acima dos indicadores mostram tudo o que está filtrado.</p></div>
+          <div><span>B</span><h4>Indicadores</h4><p>Quantidades e totais de unidades, vagas, área e população, sempre separados entre edificações comuns (azul) e empreendimentos de impacto (vermelho).</p></div>
+          <div><span>C</span><h4>Mapa</h4><p>Pontos vermelhos (impacto), azuis (comuns) e laranja (médias), sobre as regionais. A <b>densidade kernel</b> mostra a concentração das edificações comuns, com raio ajustável em metros. Clique num ponto para ver seus dados.</p></div>
+          <div><span>D</span><h4>Comparativos</h4><p>À direita do mapa: o empreendimento selecionado × as edificações do seu bairro, e o quadro <b>comuns × médias × impacto</b>, com totais, médias por registro e participação de cada grupo.</p></div>
+          <div><span>E</span><h4>Gráficos</h4><p>Registros por regional e bairro, uso, enquadramento e distribuições por faixa, que mostram a soma do próprio dado para cada grupo, no mesmo eixo. Todo gráfico filtra o painel ao clique.</p></div>
+          <div><span>F</span><h4>Relatório PDF</h4><p>O botão <b>Gerar relatório PDF</b>, no cabeçalho, documenta o recorte em tela: filtros, indicadores, mapa, tabela comparativa e gráficos, cada um com uma explicação.</p></div>
+        </div>
+      </section>
+
+      <section id="sec-limites" class="intro-sec">
+        <h2><span>7</span>Cuidados na interpretação</h2>
+        <ul class="intro-lista">
+          <li>Os dados refletem a situação de <b class="js-ref">novembro/2026</b>; aprovações posteriores não estão incluídas.</li>
+          <li>A população estimada é uma aproximação a partir de médias do Censo 2022, não uma contagem de moradores.</li>
+          <li>Edificação média é um critério analítico deste estudo, que sinaliza proximidade aos limiares de impacto; não equivale a enquadramento legal.</li>
+          <li>Os enquadramentos foram agrupados em categorias-resumo; o texto legal completo está na base original.</li>
+          <li>Consistência: a cada interação, o painel reconta os registros e confere indicadores, mapa, gráficos e comparativos. Os resultados também foram validados por um cálculo independente.</li>
+        </ul>
+      </section>
+
+      <section class="intro-cta">
+        <h2>Pronto para explorar os dados?</h2>
+        <p>O relatório abre com todos os registros. Comece pelos filtros ou clique nos gráficos para aprofundar a análise. Você pode voltar a esta introdução a qualquer momento pelo botão <b>Introdução</b>, no cabeçalho.</p>
+        <button type="button" class="btn-ir" data-ir-relatorio id="btnIrRelatorio">Ir para o relatório</button>
+        <p class="intro-status" id="introStatus" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer class="intro-rodape">
+      <div><b>Órgão responsável:</b> Diretoria de Análise de Licenciamentos Urbanísticos Especiais (DALU) / Subsecretaria de Planejamento Urbano (Suplan)</div>
+      <div><b>Dados de referência:</b> <span class="js-ref">novembro/2026</span> · <b>Fonte:</b> Banco de Dados Suplan (2020–2026) e Censo Demográfico IBGE (2022)</div>
+    </footer>
+  </section>
+
   <div id="carregando" class="carregando"><div class="spin"></div><span>Carregando e validando as bases geográficas…</span></div>
 
   <!-- ================= CABEÇALHO ================= -->
@@ -25,6 +174,7 @@
       </div>
     </div>
     <div class="header-acoes">
+      <button type="button" id="btnIntro" class="btn-intro" title="Voltar para a página de introdução">← Introdução</button>
       <span class="ref-dados" title="Data de referência das bases de dados">📅 Dados de <b id="refDados">novembro/2026</b></span>
       <button type="button" id="btnRelatorio" class="btn-pdf" title="Gera um relatório em PDF com os dados exibidos na tela">📄 Gerar relatório PDF</button>
     </div>
@@ -256,6 +406,7 @@
   <script src="js/sidebar-view.js"></script>
   <script src="js/panels-view.js"></script>
   <script src="js/report-pdf.js"></script>
+  <script src="js/intro.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

@@ -56,9 +56,15 @@ Executado em 25/11/2026, Chrome headless (1700×1000) e Node 22.
 RESULTADO: 310 verificações OK, 0 falha(s)
 ```
 
-## 2. Interface no navegador (inclui geração do relatório PDF)
+## 2. Interface no navegador (introdução, relatório e PDF)
 
 ```
+✔ 00a Abre na página de introdução (cobre toda a tela)
+✔ 00b Números da introdução = referência ['29', '3.345', '177']
+✔ 00c Introdução com objetivo, contexto, bases, tratamento, filtros e leitura
+✔ 00d Botão final "Ir para o relatório"
+✔ 00e Botão abre o relatório
+✔ 00f Botão "Introdução" volta para a introdução
 ✔ 01 Carga inicial (3 camadas): KPI 3345/29, mapa 3345/29, esperado 3345/29, consistência 41/41
 ✔ 01b Camada regional (EPSG:31983) com 10 polígonos, incluindo Hipercentro
 ✔ 01c Gráfico Regional → Hipercentro: KPI 14/1, mapa 14/1, esperado 14/1, consistência 41/41
@@ -91,7 +97,7 @@ RESULTADO: 310 verificações OK, 0 falha(s)
 ✔ 23 Gráfico de grupos → Edificações médias: KPI 177/0, mapa 177/0, esperado 177/0, consistência 41/41
 ✔ 24 Gráfico Uso → Não residencial: KPI 0/15, mapa 0/15, esperado 0/15, consistência 41/41
 ✔ 25 KDE ativado: 3345 edificações, raio 800 m
-✔ 26 Raio alterado → superfície recalculada (3.345 edificações · raio 1.500 m · célula 120 m · 24 ms)
+✔ 26 Raio alterado → superfície recalculada (3.345 edificações · raio 1.500 m · célula 120 m · 43 ms)
 ✔ 27 Opacidade do KDE ajustada sem alterar resultados
 ✔ 28 KDE acompanha o filtro (Barreiro: 334 edificações)
 ✔ 29 Troca para Satellite preserva zoom, centro e resultados
@@ -110,11 +116,11 @@ RESULTADO: 310 verificações OK, 0 falha(s)
 ✔ 35 Ordem da barra lateral: ['🗺️ Camadas', 'LIMPAR', '🎯 Filtro especial']
 ✔ 36 Cabeçalho sem consistência/qualidade/limpar
 ✔ 37 Informativo "Dados de novembro/2026" no cabeçalho
-✔ 38 PDF gerado: relatorio_edificacoes_impacto_20261125_1400.pdf (7 páginas, 221 KB)
+✔ 38 PDF gerado: relatorio_edificacoes_impacto_20261125_1427.pdf (7 páginas, 221 KB)
 ✔ 39 Conteúdo do PDF: seções, empreendimento, referência e valores iguais à tela
 ✔ 35 Nenhum erro de JavaScript durante os testes
 
-RESULTADO INTERFACE: 54/54 testes OK
+RESULTADO INTERFACE: 60/60 testes OK
 ```
 
 ## 3. Não testado neste ambiente

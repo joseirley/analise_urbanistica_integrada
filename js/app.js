@@ -12,10 +12,12 @@
 
   async function iniciar() {
     const carregando = document.getElementById('carregando');
+    root.Intro.iniciar();   // introdução é a página de entrada; os dados carregam em segundo plano
     let dados;
     try {
       dados = await DataLoader.carregar();
     } catch (err) {
+      root.Intro.erro(err.message);
       carregando.innerHTML = `<div class="erro-box"><b>Não foi possível carregar os dados.</b><br>${Util.esc(err.message)}</div>`;
       console.error(err);
       return;
@@ -147,6 +149,8 @@
     state.subscribe(atualizar);
     atualizar(new Set(['inicio']));
     carregando.hidden = true;
+    root.Intro.aoMostrarRelatorio = () => setTimeout(() => mapa.map.invalidateSize(), 0);
+    root.Intro.preencher(dados, FE);
   }
 
   document.addEventListener('DOMContentLoaded', iniciar);
