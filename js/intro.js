@@ -64,6 +64,11 @@
       set('.js-n-impacto', Util.fmt(ti.n));
       set('.js-n-medias', Util.fmt(tm.n));
       set('.js-n-regionais', Util.fmt(dados.regional.features.length));
+      const anos = dados.impacto.map(r => r.extras.ano).filter(a => a !== null && Number.isFinite(a));
+      if (anos.length) {
+        const a0 = Math.min(...anos), a1 = Math.max(...anos);
+        set('.js-plu-anos', a0 === a1 ? String(a0) : `${a0} a ${a1}`);
+      }
 
       const enq = Object.entries(dados.qualidade.enquadramentoMapa).sort((a, b) => b[1] - a[1]);
       document.getElementById('introEnq').innerHTML =

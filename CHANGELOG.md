@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 2.0.6 — novembro/2026
+- Introdução: abrangência temporal dos dados (edificações comuns pela Lei nº 11.181/2019; empreendimentos de impacto com PLUs emitidos a partir de 2020, podendo incluir licenciamentos iniciados sob a Lei nº 9.959/2010 por direito de protocolo).
+
 ## 2.0.5 — novembro/2026
 - Relatório PDF: as notas metodológicas deixam de citar o nome e o formato dos arquivos das bases.
 

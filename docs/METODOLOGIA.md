@@ -10,6 +10,8 @@ Este documento descreve como o painel lê, trata e agrega os dados. Os arquivos 
 | Edificações comuns | `base/edificacoes_2.geojson` | 3.345 | EPSG:31983 |
 | Regionais | `base/regional.geojson` | 10 | EPSG:31983 |
 
+**Abrangência temporal.** As edificações comuns foram aprovadas de acordo com a Lei nº 11.181/2019 (Plano Diretor), em vigor desde 5 de fevereiro de 2020. Os empreendimentos de impacto correspondem a PLUs emitidos a partir de 2020 (2020 a 2026 nesta base) e, por direito de protocolo, podem incluir empreendimentos que iniciaram o licenciamento sob a Lei nº 9.959/2010.
+
 O SRC é lido do próprio GeoJSON (`crs.properties.name`). As geometrias são reprojetadas para WGS 84 (Proj4js) apenas para exibição no mapa. Todos os 3.374 pontos caem dentro do polígono da regional informada no atributo `nome_regional` (verificado ponto a ponto).
 
 ## 2. Dicionário de dados (campos reais × painel)

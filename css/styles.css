@@ -370,3 +370,13 @@ body.filtro-ativo .filtros-topo .btn-limpar { box-shadow: 0 0 0 3px #bfdbfe; }
   .intro-hero h1 { font-size: 26px; }
   .intro-sec { padding: 16px; }
 }
+
+/* Abrangência temporal (introdução) */
+.intro-abrangencia { margin-top: 14px; border: 1px solid var(--bd); border-radius: 12px; padding: 12px 14px; background: #fbfdff; }
+.intro-abrangencia h4 { color: var(--pri); font-size: 14px; margin-bottom: 8px; }
+.ab-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.ab { border-radius: 10px; padding: 10px 12px; font-size: 12.8px; line-height: 1.5; border-left: 4px solid; }
+.ab > b:first-child { display: block; font-size: 13.5px; margin-bottom: 3px; }
+.ab.com { background: #eff6ff; border-color: var(--com); } .ab.com > b:first-child { color: #1d4ed8; }
+.ab.imp { background: #fef2f2; border-color: var(--imp); } .ab.imp > b:first-child { color: #b91c1c; }
+@media (max-width: 900px) { .ab-grid { grid-template-columns: 1fr; } }

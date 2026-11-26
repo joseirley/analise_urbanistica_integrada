@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel v2 – Edificações Comuns × Empreendimentos de Impacto | DALU / Suplan PBH</title>
-  <link rel="stylesheet" href="lib/leaflet.css?v=2.0.5">
-  <link rel="stylesheet" href="css/styles.css?v=2.0.5">
-  <script src="lib/leaflet.js?v=2.0.5"></script>
-  <script src="lib/chart.min.js?v=2.0.5"></script>
-  <script src="lib/proj4.js?v=2.0.5"></script>
-  <script src="lib/pdf-lib.min.js?v=2.0.5"></script>
+  <link rel="stylesheet" href="lib/leaflet.css?v=2.0.6">
+  <link rel="stylesheet" href="css/styles.css?v=2.0.6">
+  <script src="lib/leaflet.js?v=2.0.6"></script>
+  <script src="lib/chart.min.js?v=2.0.6"></script>
+  <script src="lib/proj4.js?v=2.0.6"></script>
+  <script src="lib/pdf-lib.min.js?v=2.0.6"></script>
 </head>
 <body>
   <!-- ================= INTRODUÇÃO (página de entrada) ================= -->
@@ -86,6 +86,13 @@
             <tr><td>Regionais</td><td class="num js-n-regionais">10</td><td>Limites das regionais administrativas, inclusive a Hipercentro</td></tr>
           </tbody>
         </table>
+        <div class="intro-abrangencia">
+          <h4>🗓️ Abrangência temporal dos dados</h4>
+          <div class="ab-grid">
+            <div class="ab com"><b>Edificações comuns</b><p>Edificações aprovadas de acordo com a <b>Lei nº 11.181/2019</b> (Plano Diretor de Belo Horizonte), em vigor desde 5 de fevereiro de 2020.</p></div>
+            <div class="ab imp"><b>Empreendimentos de impacto</b><p>PLUs emitidos <b>a partir de 2020</b> (<span class="js-plu-anos">2020 a 2026</span> nesta base). Por <b>direito de protocolo</b>, podem incluir empreendimentos que iniciaram o licenciamento sob a <b>Lei nº 9.959/2010</b>, o Plano Diretor anterior.</p></div>
+          </div>
+        </div>
         <p class="intro-nota">Fonte: Banco de Dados Suplan (2020–2026) e Censo Demográfico IBGE (2022). As três camadas estão em SIRGAS 2000 / UTM 23S (EPSG:31983). Dados de referência: <b class="js-ref">novembro/2026</b>.</p>
       </section>
 
@@ -140,6 +147,7 @@
         <h2><span>7</span>Cuidados na interpretação</h2>
         <ul class="intro-lista">
           <li>Os dados refletem a situação de <b class="js-ref">novembro/2026</b>; aprovações posteriores não estão incluídas.</li>
+          <li>As edificações comuns seguem a Lei nº 11.181/2019, mas parte dos empreendimentos de impacto pode ter sido licenciada pelos parâmetros da Lei nº 9.959/2010, por direito de protocolo. Considere essa diferença de legislação ao comparar os grupos.</li>
           <li>A população estimada é uma aproximação, a partir da população média por domicílio do setor censitário (IBGE, Censo 2022); não é uma contagem de moradores.</li>
           <li>Edificação média é um critério analítico deste estudo, que sinaliza proximidade aos limiares de impacto; não equivale a enquadramento legal.</li>
           <li>Os enquadramentos foram agrupados em categorias-resumo; o texto legal completo está na base original.</li>
@@ -393,20 +401,20 @@
     </main>
   </div>
 
-  <script src="js/config.js?v=2.0.5"></script>
-  <script src="js/normalize.js?v=2.0.5"></script>
-  <script src="js/util.js?v=2.0.5"></script>
-  <script src="js/data-loader.js?v=2.0.5"></script>
-  <script src="js/filter-state.js?v=2.0.5"></script>
-  <script src="js/filter-engine.js?v=2.0.5"></script>
-  <script src="js/kde.js?v=2.0.5"></script>
-  <script src="js/validation.js?v=2.0.5"></script>
-  <script src="js/map-view.js?v=2.0.5"></script>
-  <script src="js/charts-view.js?v=2.0.5"></script>
-  <script src="js/sidebar-view.js?v=2.0.5"></script>
-  <script src="js/panels-view.js?v=2.0.5"></script>
-  <script src="js/report-pdf.js?v=2.0.5"></script>
-  <script src="js/intro.js?v=2.0.5"></script>
-  <script src="js/app.js?v=2.0.5"></script>
+  <script src="js/config.js?v=2.0.6"></script>
+  <script src="js/normalize.js?v=2.0.6"></script>
+  <script src="js/util.js?v=2.0.6"></script>
+  <script src="js/data-loader.js?v=2.0.6"></script>
+  <script src="js/filter-state.js?v=2.0.6"></script>
+  <script src="js/filter-engine.js?v=2.0.6"></script>
+  <script src="js/kde.js?v=2.0.6"></script>
+  <script src="js/validation.js?v=2.0.6"></script>
+  <script src="js/map-view.js?v=2.0.6"></script>
+  <script src="js/charts-view.js?v=2.0.6"></script>
+  <script src="js/sidebar-view.js?v=2.0.6"></script>
+  <script src="js/panels-view.js?v=2.0.6"></script>
+  <script src="js/report-pdf.js?v=2.0.6"></script>
+  <script src="js/intro.js?v=2.0.6"></script>
+  <script src="js/app.js?v=2.0.6"></script>
 </body>
 </html>
