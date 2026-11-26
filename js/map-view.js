@@ -56,7 +56,13 @@
     _fundos() {
       const F = CONFIG.mapa.fundos;
       this.fundos = {};
-      Object.entries(F).forEach(([k, f]) => { this.fundos[k] = L.tileLayer(f.url, f.opcoes); });
+      Object.entries(F).forEach(([k, f]) => {
+        // Fundo simples (Street) ou imagem + sobreposições (Satellite com nomes das vias)
+        const base = L.tileLayer(f.url, Object.assign({ zIndex: 1 }, f.opcoes));
+        this.fundos[k] = f.sobreposicoes && f.sobreposicoes.length
+          ? L.layerGroup([base, ...f.sobreposicoes.map((o, i) => L.tileLayer(o.url, Object.assign({ zIndex: 2 + i }, o.opcoes)))])
+          : base;
+      });
       this.fundoAtual = 'street';
       this.fundos.street.addTo(this.map);
       const self = this;
@@ -82,8 +88,7 @@
     setFundo(k) {
       if (!this.fundos[k] || k === this.fundoAtual) return;
       this.map.removeLayer(this.fundos[this.fundoAtual]);
-      this.fundos[k].addTo(this.map);
-      this.fundos[k].bringToBack();
+      this.fundos[k].addTo(this.map);   // a ordem entre as camadas de fundo é dada pelo zIndex
       this.fundoAtual = k;
       this._ctlFundo.querySelectorAll('button').forEach(b => b.classList.toggle('ativo', b.dataset.fundo === k));
       root.document.body.dataset.fundo = k;
@@ -156,8 +161,9 @@
         const temMedia = grp.some(r => r.media);
         const m = L.circleMarker([grp[0].lat, grp[0].lng], {
           renderer: this.renderer,
-          radius: grp.length > 1 ? 6 : 4.5, weight: grp.length > 1 ? 2 : 1,
-          color: temMedia ? '#92400e' : '#ffffff', fillColor: temMedia ? C.media : C.comum,
+          // Contorno escuro e marcante para não confundir com elementos do mapa de fundo
+          radius: grp.length > 1 ? 6.5 : 5, weight: grp.length > 1 ? 2.6 : 1.8,
+          color: temMedia ? C.contornoMedia : C.contornoComum, fillColor: temMedia ? C.media : C.comum,
           opacity: oc, fillOpacity: oc
         });
         m._grp = grp; m._camada = 'comuns';

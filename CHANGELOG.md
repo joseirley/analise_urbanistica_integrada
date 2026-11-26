@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 2.0.7 — novembro/2026
+- Edificações comuns e médias com contorno escuro mais marcante, para não se confundirem com elementos do mapa de fundo Street.
+- Mapa de fundo Satellite com as vias e seus nomes sobrepostos à imagem (Esri World Transportation).
+
 ## 2.0.6 — novembro/2026
 - Introdução: abrangência temporal dos dados (edificações comuns pela Lei nº 11.181/2019; empreendimentos de impacto com PLUs emitidos a partir de 2020, podendo incluir licenciamentos iniciados sob a Lei nº 9.959/2010 por direito de protocolo).
 

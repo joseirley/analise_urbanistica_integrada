@@ -380,3 +380,8 @@ body.filtro-ativo .filtros-topo .btn-limpar { box-shadow: 0 0 0 3px #bfdbfe; }
 .ab.com { background: #eff6ff; border-color: var(--com); } .ab.com > b:first-child { color: #1d4ed8; }
 .ab.imp { background: #fef2f2; border-color: var(--imp); } .ab.imp > b:first-child { color: #b91c1c; }
 @media (max-width: 900px) { .ab-grid { grid-template-columns: 1fr; } }
+
+/* Legenda: contorno marcante das edificações comuns e médias (igual ao mapa) */
+.sw-lg.com { border: 1.8px solid #0b1f3a; box-shadow: none; }
+.sw-lg.med { border: 1.8px solid #5c1d06; box-shadow: none; }
+.sw-ring { border: 2.6px solid #0b1f3a; box-shadow: none; }

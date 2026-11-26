@@ -120,7 +120,9 @@
       media: '#f59e0b',
       impacto: '#dc2626',
       regional: '#0f2d59',
-      contexto: '#94a3b8'
+      contexto: '#94a3b8',
+      contornoComum: '#0b1f3a',   // contorno das edificações comuns
+      contornoMedia: '#5c1d06'    // contorno das edificações médias
     },
 
     // KDE (raio em metros, kernel quártico — mesmo kernel padrão do QGIS)
@@ -143,8 +145,14 @@
           url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
           opcoes: {
             maxZoom: 19, crossOrigin: true,
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
-          }
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community; ' +
+              'vias: Esri, HERE, Garmin, &copy; OpenStreetMap contributors'
+          },
+          // Camadas sobrepostas à imagem: vias e nomes das vias (fundo transparente)
+          sobreposicoes: [
+            { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',
+              opcoes: { maxZoom: 19, crossOrigin: true } }
+          ]
         }
       }
     }

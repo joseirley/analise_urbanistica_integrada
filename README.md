@@ -48,7 +48,7 @@ Os mapas de fundo (OpenStreetMap e Esri) exigem internet; filtros, gráficos e r
 
 O site é publicado pelo GitHub Pages a partir da **raiz do branch `main`**. Qualquer alteração enviada ao `main` é publicada automaticamente em alguns minutos. O arquivo `.nojekyll` faz o Pages servir os arquivos como estão.
 
-**Cache do navegador:** no `index.html`, os arquivos CSS e JS são carregados com um número de versão (`?v=2.0.6`). A cada nova publicação, aumente esse número (buscar e substituir no `index.html`), para que os navegadores não misturem a página nova com estilos ou scripts antigos guardados em cache.
+**Cache do navegador:** no `index.html`, os arquivos CSS e JS são carregados com um número de versão (`?v=2.0.7`). A cada nova publicação, aumente esse número (buscar e substituir no `index.html`), para que os navegadores não misturem a página nova com estilos ou scripts antigos guardados em cache.
 
 ---
 
@@ -127,4 +127,4 @@ Detalhes em [tests/RESULTADO_TESTES.md](tests/RESULTADO_TESTES.md).
 | [Proj4js](http://proj4js.org) | Reprojeção | MIT |
 | [pdf-lib](https://pdf-lib.js.org) 1.17.1 | Relatório PDF | MIT (`lib/pdf-lib.LICENSE.md`) |
 
-Mapas de fundo: © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors; imagem de satélite © Esri, Maxar, Earthstar Geographics.
+Mapas de fundo: © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors; imagem de satélite © Esri, Maxar, Earthstar Geographics; vias e nomes das vias sobre a imagem: Esri, HERE, Garmin, © OpenStreetMap contributors.
